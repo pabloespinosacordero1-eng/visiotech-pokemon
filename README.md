@@ -1,0 +1,2 @@
+-Control de ids no existentes en bd
+-Documentación del código
