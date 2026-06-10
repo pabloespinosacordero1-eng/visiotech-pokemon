@@ -57,13 +57,13 @@ Factores:
 
 La efectividad se calcula mediante una matriz de tipos (18x18), donde:
 
-- Filas → tipo del movimiento
-- Columnas → tipo del Pokémon defensor
+- Filas: tipo del movimiento
+- Columnas: tipo del Pokémon defensor
 - Valores:
-  - 0 → no afecta
-  - 0.5 → poco eficaz
-  - 1 → normal
-  - 2 → súper eficaz
+  - 0: no afecta
+  - 0.5: poco eficaz
+  - 1: normal
+  - 2: súper eficaz
 
 
 # Base de datos
@@ -123,6 +123,47 @@ Response:
   "damage": 12,
   "defender_hp": 88,
   "ko": false
+}
+
+
+# Request Examples
+
+POST /pokemon
+
+{
+  "name": "Pikachu",
+  "type": "electric",
+  "hp": 100,
+  "attack": 55,
+  "defense": 40,
+  "level": 10
+}
+
+PUT /pokemon/{id}
+
+{
+  "name": "Pikachu",
+  "type": "electric",
+  "hp": 120,
+  "attack": 60,
+  "defense": 45,
+  "level": 12
+}
+
+POST /move
+
+{
+  "name": "Thunderbolt",
+  "type": "electric",
+  "power": 90
+}
+
+POST /battle/attack
+
+{
+  "attacker_id": 1,
+  "defender_id": 2,
+  "move_id": 3
 }
 
 
