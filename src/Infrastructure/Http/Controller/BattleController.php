@@ -18,24 +18,36 @@ class BattleController
     {
         header('Content-Type: application/json');
 
-        $attacker = $this->pokemonRepository->findById($payload['attacker_id']);
-        $defender = $this->pokemonRepository->findById($payload['defender_id']);
-        $move     = $this->moveRepository->findById($payload['move_id']);
+        if (!isset($payload['attacker_id'], $payload['defender_id'], $payload['move_id'])) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Missing parameters']);
+            return;
+        }
+
+        $attacker = $this->pokemonRepository->findById((int)$payload['attacker_id']);
+        $defender = $this->pokemonRepository->findById((int)$payload['defender_id']);
+        $move     = $this->moveRepository->findById((int)$payload['move_id']);
+
+        if (!$attacker || !$defender || !$move) {
+            http_response_code(404);
+            echo json_encode(['error' => 'Pokemon or move not found']);
+            return;
+        }
 
         $damage = $this->damageService->calculate($attacker, $defender, $move);
 
-        $defender['hp_current'] -= $damage;
+        $defender['hp'] -= $damage;
 
-        if ($defender['hp_current'] < 0) {
-            $defender['hp_current'] = 0;
+        if ($defender['hp'] < 0) {
+            $defender['hp'] = 0;
         }
 
-        $this->pokemonRepository->updateHp($defender['id'], $defender['hp_current']);
+        $this->pokemonRepository->updateHp($defender['id'], $defender['hp']);
 
         echo json_encode([
             'damage' => $damage,
-            'defender_hp' => $defender['hp_current'],
-            'ko' => $defender['hp_current'] === 0
+            'defender_hp' => $defender['hp'],
+            'ko' => $defender['hp'] === 0
         ]);
     }
 }

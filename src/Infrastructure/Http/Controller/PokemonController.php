@@ -45,13 +45,9 @@ class PokemonController
             'name' => $payload['name'],
             'type' => $payload['type'],
             'level' => $payload['level'] ?? 1,
-            'hp_current' => $payload['hp_current'],
-            'hp_max' => $payload['hp_max'],
+            'hp' => $payload['hp'],
             'attack' => $payload['attack'],
             'defense' => $payload['defense'],
-            'sp_attack' => $payload['sp_attack'],
-            'sp_defense' => $payload['sp_defense'],
-            'speed' => $payload['speed'],
         ]);
 
         echo json_encode([

@@ -12,7 +12,7 @@ class BattleRepository
     {
         $stmt = $this->pdo->prepare("
             UPDATE pokemon
-            SET hp_current = :hp
+            SET hp = :hp
             WHERE id = :id
         ");
 

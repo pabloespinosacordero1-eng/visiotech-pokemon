@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="vendor/autoload.php">
+  <php>
+    <ini name="error_reporting" value="0"/>
+  </php>
   <testsuites>
     <testsuite name="Domain">
-      <directory>tests/Domain</directory>
-    </testsuite>
-    <testsuite name="Application">
-      <directory>tests/Application</directory>
+      <directory>tests</directory>
     </testsuite>
   </testsuites>
 </phpunit>

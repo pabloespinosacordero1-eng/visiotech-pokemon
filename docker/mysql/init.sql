@@ -5,41 +5,44 @@ DROP TABLE IF EXISTS pokemon;
 -- =========================
 -- POKEMON
 -- =========================
+
 CREATE TABLE pokemon (
-  id INT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  type VARCHAR(50) NOT NULL,
-  level INT NOT NULL,
-  hp INT NOT NULL,
-  attack INT NOT NULL,
-  defense INT NOT NULL
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    hp INT NOT NULL,
+    attack INT NOT NULL,
+    defense INT NOT NULL,
+    level INT NOT NULL,
+    PRIMARY KEY (id)
 );
 
-INSERT INTO pokemon (id, name, type, level, hp, attack, defense) VALUES
-(1, 'Charmander', 'fire', 5, 39, 52, 43),
-(2, 'Squirtle', 'water', 5, 44, 48, 65),
-(3, 'Bulbasaur', 'grass', 5, 45, 49, 49),
-(4, 'Pikachu', 'electric', 5, 35, 55, 40);
+INSERT INTO pokemon (name, type, level, hp, attack, defense) VALUES
+('Charmander', 'fire', 5, 39, 52, 43),
+('Squirtle', 'water', 5, 44, 48, 65),
+('Bulbasaur', 'grass', 5, 45, 49, 49),
+('Pikachu', 'electric', 5, 35, 55, 40);
 
 -- =========================
 -- MOVES
 -- =========================
 CREATE TABLE move (
-  id INT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  type VARCHAR(50) NOT NULL,
-  power INT NOT NULL
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    power INT NOT NULL,
+    PRIMARY KEY (id)
 );
 
 INSERT INTO move (id, name, type, power) VALUES
-(1, 'Ember', 'fire', 40),
-(2, 'Flamethrower', 'fire', 90),
-(3, 'Water Gun', 'water', 40),
-(4, 'Hydro Pump', 'water', 110),
-(5, 'Vine Whip', 'grass', 45),
-(6, 'Razor Leaf', 'grass', 55),
-(7, 'Thunder Shock', 'electric', 40),
-(8, 'Thunderbolt', 'electric', 90);
+('Ember', 'fire', 40),
+('Flamethrower', 'fire', 90),
+('Water Gun', 'water', 40),
+('Hydro Pump', 'water', 110),
+('Vine Whip', 'grass', 45),
+('Razor Leaf', 'grass', 55),
+('Thunder Shock', 'electric', 40),
+('Thunderbolt', 'electric', 90);
 
 -- =========================
 -- RELATION POKEMON-MOVES

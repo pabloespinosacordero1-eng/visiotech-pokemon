@@ -14,16 +14,17 @@ class PokemonRepository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findById(int $id): array
+    public function findById(int $id): ?array
     {
         $stmt = $this->pdo->prepare("
-            SELECT * FROM pokemon
-            WHERE id = :id
+            SELECT * FROM pokemon WHERE id = :id
         ");
 
         $stmt->execute(['id' => $id]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result ?: null;
     }
 
     public function create(array $data): int
@@ -31,16 +32,12 @@ class PokemonRepository
         $stmt = $this->pdo->prepare("
             INSERT INTO pokemon (
                 name, type, level,
-                hp_current, hp_max,
-                attack, defense,
-                sp_attack, sp_defense,
-                speed
+                hp,
+                attack, defense
             ) VALUES (
                 :name, :type, :level,
-                :hp_current, :hp_max,
-                :attack, :defense,
-                :sp_attack, :sp_defense,
-                :speed
+                :hp,
+                :attack, :defense
             )
         ");
 
@@ -98,7 +95,7 @@ class PokemonRepository
     {
         $stmt = $this->pdo->prepare("
             UPDATE pokemon
-            SET hp_current = :hp
+            SET hp = :hp
             WHERE id = :id
         ");
 
