@@ -34,7 +34,7 @@ CREATE TABLE move (
     PRIMARY KEY (id)
 );
 
-INSERT INTO move (id, name, type, power) VALUES
+INSERT INTO move (name, type, power) VALUES
 ('Ember', 'fire', 40),
 ('Flamethrower', 'fire', 90),
 ('Water Gun', 'water', 40),
