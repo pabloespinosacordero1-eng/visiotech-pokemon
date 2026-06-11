@@ -216,7 +216,7 @@ Toda la lógica de negocio ha sido implementada y validada manualmente.
 # Ejecución del proyecto
 
 Docker:
-docker-compose up -d
+docker compose up -d --build
 
 Local:
 php -S localhost:8000 -t public (si no usas docker, si lo usas se ejecuta automáticamente)
